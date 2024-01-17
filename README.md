@@ -1,5 +1,4 @@
 # ml_fin2
-Machine Learning in Finance 2
 Authors: Adam Foster, Maciej Staniszewski
 
 Machine Learning in Finance 2 project on Tokyo Exchange Stock Price Prediction.

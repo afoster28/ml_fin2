@@ -14580,10 +14580,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Tokyo-Stock-Prices---A.-Foster,-M.-Staniszewski">Tokyo Stock Prices - A. Foster, M. Staniszewski<a class="anchor-link" href="#Tokyo-Stock-Prices---A.-Foster,-M.-Staniszewski">&#182;</a></h1><p>Our project is related to <strong>time series forecasting</strong> of financial product prices using advanced machine learning models - <a href="https://facebook.github.io/prophet/">Facebook Prophet</a> and <a href="https://github.com/uber/orbit">Uber Orbit</a>. Our work is <a href="https://github.com/afoster28/ml_fin2">stored on GitHub</a> in a public repository along with the dataset itself.</p>
-<h2 id="About-the-Data">About the Data<a class="anchor-link" href="#About-the-Data">&#182;</a></h2><p><a href="https://www.kaggle.com/competitions/jpx-tokyo-stock-exchange-prediction/data">The dataset (link to Kaggle)</a> contains a list of time series of stock and option prices traded in the Japanese market. The original goal of the exercise was to predict returns, but as this is fully equivalent to predicting the price itself, we decided to chose the latter in favor of price <strong>non-negativity</strong> and <strong>non-stationarity</strong> of observations.</p>
-$$return_i = \frac{price_i}{price_{i-1}} - 1$$<h3 id="Company-of-Choice">Company of Choice<a class="anchor-link" href="#Company-of-Choice">&#182;</a></h3><p>The focus of our work was a selected stock in the Japanese market: <strong>"Japan Petroleum Exploration Co.,Ltd."</strong>. This is a domestic company operating in the <em>energy</em> sector and focused on mining. Restricting our dataset this way allowed us to reduce its original, very significant size.</p>
-<h2 id="Forecasting-Period">Forecasting Period<a class="anchor-link" href="#Forecasting-Period">&#182;</a></h2><p>As stock prices are generally very dificult to predict, we opted for a (still very impressive) forcasting period of 45 days, which correspond to nine business weeks. In our initial expectations we thought, that an accurate prediction that far into the future is not possible, so that time frame was a suitable test of the forecasting libraries that we explored.</p>
+<h1 id="Tokyo-Exchange-Stock-Price-Prediction">Tokyo Exchange Stock Price Prediction<a class="anchor-link" href="#Tokyo-Exchange-Stock-Price-Prediction">&#182;</a></h1><p>Authors: Adam Foster, Maciej Staniszewski</p>
+<p>Our project is related to <strong>time series forecasting</strong> of financial product prices using advanced machine learning models - <a href="https://facebook.github.io/prophet/">Facebook Prophet</a>, a univariate additive model that identifies non-linear trends and seasonal effects, and <a href="https://github.com/uber/orbit">Uber Orbit</a>, a probabilistic Bayesian time series modelling framework spanning Exponential Smoothing, Local Global Trend and Damped Local Trend. Our work is <a href="https://github.com/afoster28/ml_fin2">stored on GitHub</a> in a public repository along with the dataset itself.</p>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><p><a href="https://www.kaggle.com/competitions/jpx-tokyo-stock-exchange-prediction/data">The dataset (link to Kaggle)</a> contains a list of time series of stock and option prices traded in the Japanese market. The original goal of the exercise was to predict returns, but as this is fully equivalent to predicting the price itself, we decided to chose the latter in favor of price <strong>non-negativity</strong> and <strong>non-stationarity</strong> of observations.</p>
+$$return_i = \frac{price_i}{price_{i-1}} - 1$$<h3 id="Company-of-Choice">Company of Choice<a class="anchor-link" href="#Company-of-Choice">&#182;</a></h3><p>The focus of our work was a selected stock in the Japanese market: <strong>"Japan Petroleum Exploration Co.,Ltd."</strong>. This is a well established Japanese oil &amp; gas company. It serves as a good starting point for univariate forecasting and restricting our dataset this way allowed us to reduce its original significant size.</p>
+<h2 id="Forecasting-Period">Forecasting Period<a class="anchor-link" href="#Forecasting-Period">&#182;</a></h2><p>As stock prices are generally very dificult to predict, we opted for a (longer than necessary) forecasting period of 45 days, which corresponds to nine business weeks. In our initial expectations we thought that an accurate prediction that far into the future is not feasible, so that time frame was a conservative test of the forecasting libraries that we explored and proved effective.</p>
 
 </div>
 </div>
@@ -14609,8 +14610,8 @@ $$return_i = \frac{price_i}{price_{i-1}} - 1$$<h3 id="Company-of-Choice">Company
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">prophet</span> <span class="c1"># Install Facebook Prophet</span>
-<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uber</span><span class="o">/</span><span class="n">orbit</span><span class="o">.</span><span class="n">git</span><span class="nd">@dev</span> <span class="c1"># Install the dev version of Orbit</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>prophet<span class="w"> </span>#<span class="w"> </span>Install<span class="w"> </span>Facebook<span class="w"> </span>Prophet
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/uber/orbit.git@dev<span class="w"> </span>#<span class="w"> </span>Install<span class="w"> </span>the<span class="w"> </span>dev<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Orbit
 </pre></div>
 
      </div>
@@ -14626,7 +14627,7 @@ $$return_i = \frac{price_i}{price_{i-1}} - 1$$<h3 id="Company-of-Choice">Company
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14668,7 +14669,7 @@ $$return_i = \frac{price_i}{price_{i-1}} - 1$$<h3 id="Company-of-Choice">Company
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">FORECASTING_PERIOD</span> <span class="o">=</span> <span class="mi">45</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">FORECASTING_PERIOD</span> <span class="o">=</span> <span class="mi">45</span>
 </pre></div>
 
      </div>
@@ -14697,7 +14698,7 @@ $$return_i = \frac{price_i}{price_{i-1}} - 1$$<h3 id="Company-of-Choice">Company
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'stock_prices.csv'</span><span class="p">)</span> <span class="c1"># Read the data from a csv file</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'stock_prices.csv'</span><span class="p">)</span> <span class="c1"># Read the data from a csv file</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'SecuritiesCode'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1662</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"bfill"</span><span class="p">)</span> <span class="c1"># Backfill NAs in the time series of our stock price</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Date'</span><span class="p">)</span> <span class="c1"># Set the index to be the Date for nice plotting</span>
 <span class="n">full</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># Retain the original TEST dataset containing the true last 45 observations</span>
@@ -14770,7 +14771,7 @@ memory usage: 100.6+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">'Close'</span><span class="p">]]</span> <span class="c1"># We are interested in the Close price, as the return can be derived from this variable.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">'Close'</span><span class="p">]]</span> <span class="c1"># We are interested in the Close price, as the return can be derived from this variable.</span>
 <span class="n">series</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -14836,7 +14837,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[90]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span> <span class="c1"># Increasing the size of the plots</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span> <span class="c1"># Increasing the size of the plots</span>
 <span class="c1"># Using the multiplicative model, because this is a stock price following the exponential GBM.</span>
 <span class="c1"># The number of business (trading) days in a year is 252.</span>
 <span class="n">decomposition</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="s1">'additive'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">252</span><span class="p">)</span>
@@ -14897,7 +14898,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Forecasting-with-Prophet">Forecasting with Prophet<a class="anchor-link" href="#Forecasting-with-Prophet">&#182;</a></h1><p>To leverage <em>Prohpet</em> we first need to prepare the series by creating a data frame with two columns - <code>ds</code> (dates) and <code>y</code> (values). This is then used in the typical fit-predict-evaluate pipeline.</p>
+<h1 id="Forecasting-with-Prophet">Forecasting with Prophet<a class="anchor-link" href="#Forecasting-with-Prophet">&#182;</a></h1><p>To leverage <em>Prophet</em> we first need to prepare the series by creating a data frame with two columns - <code>ds</code> (dates) and <code>y</code> (values). This is then used in the typical fit-predict-evaluate pipeline.</p>
 <h2 id="Constructing-the-Model">Constructing the Model<a class="anchor-link" href="#Constructing-the-Model">&#182;</a></h2><p>After creating the <code>s</code> dataframe we construct the model <code>m</code>, which accounts for Japanese holidays.</p>
 
 </div>
@@ -14911,7 +14912,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[91]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> <span class="c1"># We don't want any indices in the Prophet dataframe</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> <span class="c1"># We don't want any indices in the Prophet dataframe</span>
 <span class="n">s</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'ds'</span><span class="p">,</span> <span class="s1">'y'</span> <span class="p">]</span> <span class="c1"># We have to rename our columns to match Prophet specifications</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">Prophet</span><span class="p">(</span><span class="n">interval_width</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">seasonality_mode</span> <span class="o">=</span> <span class="s2">"additive"</span><span class="p">)</span> <span class="c1"># We chose our conficence interval to be 95% as opposed to 80%.</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_country_holidays</span><span class="p">(</span><span class="n">country_name</span><span class="o">=</span><span class="s1">'JP'</span><span class="p">)</span> <span class="c1"># We account for Japanese holidays.</span>
@@ -14967,7 +14968,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[92]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="c1"># Last observations in the `data` set end on 29-09-2021</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Last observations in the `data` set end on 29-09-2021</span>
 <span class="n">data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 
@@ -15337,7 +15338,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[93]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">future</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">make_future_dataframe</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">future</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">make_future_dataframe</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 <span class="c1"># Last `future` observations placeholders end on 26-12-2021, exactly after 45 days:</span>
 <span class="n">future</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
@@ -15646,7 +15647,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[94]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
 <span class="n">forecast</span><span class="p">[[</span><span class="s1">'ds'</span><span class="p">,</span> <span class="s1">'yhat'</span><span class="p">]]</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span> <span class="c1"># Notice how the placeholder dates now store predicted samples!</span>
 </pre></div>
 
@@ -15960,7 +15961,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[95]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">plot1</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot1</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">add_changepoints_to_plot</span><span class="p">(</span><span class="n">plot1</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span><span class="n">m</span><span class="p">,</span><span class="n">forecast</span><span class="p">)</span>
 </pre></div>
 
@@ -16018,7 +16019,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[96]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">plot2</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">plot_components</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot2</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">plot_components</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16062,7 +16063,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Importantly, the stock market is closed during holidays, so this component has no effect on the prediction. The weekly component is clearly separating the working weeks from weekends, during which the market closes. This is as expected. We are also happy to see, that the workdays do not differ in parameter magnitudes - there should be no preference in trading between those days.</p>
+<p>Importantly, the stock market is closed during holidays, so this component has no effect on the prediction. The weekly component is clearly separating the working weeks from weekends, during which the market closes. This is as expected. We are also happy to see that the workdays do not differ in parameter magnitudes - there should be no preference in trading between those days.</p>
 <h2 id="Evaluating-Prophet">Evaluating Prophet<a class="anchor-link" href="#Evaluating-Prophet">&#182;</a></h2><p>To evaluate our forecast we neet to combine our predictions with the <code>full</code> dataset containing our testing data.</p>
 
 </div>
@@ -16076,7 +16077,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[97]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="c1"># Create columns with uniform date format ahead of joining:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create columns with uniform date format ahead of joining:</span>
 <span class="n">full</span><span class="p">[</span><span class="s1">'ds'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">full</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">forecast</span><span class="p">[</span><span class="s1">'ds'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">forecast</span><span class="p">[</span><span class="s1">'ds'</span><span class="p">],</span> <span class="n">utc</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="c1"># Perform the join on the date timestamp:</span>
@@ -16454,7 +16455,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[98]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="s1">'Close'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="s1">'Close'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="s1">'yhat'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">mae_01</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'MAE: </span><span class="si">%.3f</span><span class="s1">'</span> <span class="o">%</span> <span class="n">mae_01</span><span class="p">)</span>
@@ -16523,7 +16524,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We obtained a MAPE of <strong>5.4%</strong>, which is <strong>extremely good</strong>! This is, however, because we're using the full series for evaluation. Let's see what will we get if we restrict our period to the last 45 observations:</p>
+<p>We obtained a MAPE of <strong>5.4%</strong>, which is <strong>extremely good</strong>. This is, however, because we're using the full series for evaluation. Let's see what will we get if we restrict our period to the last 45 observations:</p>
 
 </div>
 </div>
@@ -16536,7 +16537,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[99]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">df_merge</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">FORECASTING_PERIOD</span><span class="p">)[</span><span class="s1">'Close'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">df_merge</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">FORECASTING_PERIOD</span><span class="p">)[</span><span class="s1">'Close'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">df_merge</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">FORECASTING_PERIOD</span><span class="p">)[</span><span class="s1">'yhat'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">mae_01</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'MAE (forecasting): </span><span class="si">%.3f</span><span class="s1">'</span> <span class="o">%</span> <span class="n">mae_01</span><span class="p">)</span>
@@ -16604,8 +16605,8 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>This is even better! It turns out, that Prophet fits extreme spikes worse, limiting our MAPE score, but our out-of-sample period is better fitted by our model bringing MAPE down to <strong>4.6%</strong>.</p>
-<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p>Prophet is an amazing tool, which can very accurately predict future values of the time series with minimal setup required. We were able to obtain a MAPE score of 4.6% on out-of-sample data, which is very impressive for real-world stock market data.</p>
+<p>This is even better. It turns out, that Prophet fits extreme spikes worse, limiting our MAPE score, but our out-of-sample period is better fitted by our model bringing MAPE down to <strong>4.6%</strong>.</p>
+<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><p>Prophet is an amazing tool, which can very accurately predict future values of the time series with minimal setup required. We were able to obtain a MAPE score of 4.6% on out-of-sample data, which is very impressive for real-world stock market data, particularly this far into the future.</p>
 <h2 id="Cross-Validation">Cross Validation<a class="anchor-link" href="#Cross-Validation">&#182;</a></h2><p>We wanted to see if the good performance we observed was accidental, or if it was a true reflection of Prophet capabilities. After all, had we encountered an out-of-sample spike, the model could have performed worse on average. To test that hypothesis we ran a CV routine which trained the model using 800 days and predicted 45 1-day forecast Close prices in parallel.</p>
 <p><strong>WARNING:</strong> This may take a while! Ensure you're running in an environment with lots of CPU power, like Google Colab.</p>
 
@@ -16620,7 +16621,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[100]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df_cv</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s1">'800 days'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s1">'1 day'</span><span class="p">,</span> <span class="n">horizon</span> <span class="o">=</span> <span class="s1">'45 days'</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="s1">'threads'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cv</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="s1">'800 days'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s1">'1 day'</span><span class="p">,</span> <span class="n">horizon</span> <span class="o">=</span> <span class="s1">'45 days'</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="s1">'threads'</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16660,7 +16661,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.thread.ThreadPoolE
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[101]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df_cv</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cv</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -16997,7 +16998,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.thread.ThreadPoolE
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[102]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">prophet.diagnostics</span> <span class="kn">import</span> <span class="n">performance_metrics</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">prophet.diagnostics</span> <span class="kn">import</span> <span class="n">performance_metrics</span>
 <span class="n">df_p</span> <span class="o">=</span> <span class="n">performance_metrics</span><span class="p">(</span><span class="n">df_cv</span><span class="p">)</span>
 <span class="n">df_p</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
@@ -17336,7 +17337,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.thread.ThreadPoolE
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[103]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">plot4</span> <span class="o">=</span> <span class="n">plot_cross_validation_metric</span><span class="p">(</span><span class="n">df_cv</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">'mape'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot4</span> <span class="o">=</span> <span class="n">plot_cross_validation_metric</span><span class="p">(</span><span class="n">df_cv</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">'mape'</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -17380,7 +17381,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Looking at the plot above we can conclude, that the model does not perform as good for all possible cross-validated prediction intervals. The MAPE error is higher than 15% and lower than 20% for a 45-day prediction. Notably, if we decided to employ this solution in production for a smaller forecasting period, we could brind the MAPE down to around 10% by using a 5-day prediction window.</p>
+<p>Looking at the plot above we can conclude, that the model does not perform as well for all possible cross-validated prediction intervals. The MAPE error is higher than 15% and lower than 20% for a 45-day prediction. Notably, if we decided to employ this solution in production for a smaller forecasting period, we could brind the MAPE down to around 10% by using a 5-day prediction window.</p>
 <h2 id="Saving-the-Model">Saving the Model<a class="anchor-link" href="#Saving-the-Model">&#182;</a></h2><p>We can save our model to the <code>.json</code> file as recommended by Prophet. Notably, this functionality seems to not work in Google Colab, but should work locally.</p>
 
 </div>
@@ -17394,7 +17395,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[104]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">prophet.serialize</span> <span class="kn">import</span> <span class="n">model_to_json</span><span class="p">,</span> <span class="n">model_from_json</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'prophet_model.json'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_to_json</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">fout</span><span class="p">)</span>  <span class="c1"># Save model</span>
@@ -17425,7 +17426,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[105]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="c1"># Python</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
@@ -17583,7 +17584,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.process.ProcessPoo
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[106]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">tuning_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tuning_results</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tuning_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tuning_results</span><span class="p">)</span>
 <span class="n">tuning_results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">'mape'</span><span class="p">,</span><span class="s1">'mae'</span><span class="p">])</span>
 </pre></div>
 
@@ -18071,7 +18072,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.process.ProcessPoo
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We observe, that the smaller the two parameters the better - notably, the overfitting risk was too big for us to go for this small benefit in MAPE.</p>
+<p>We observe that the smaller the two parameters the better - notably, the overfitting risk was too big for us to go for this small benefit in MAPE.</p>
 
 </div>
 </div>
@@ -18084,7 +18085,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.process.ProcessPoo
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[107]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">all_params</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">mapes</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">all_params</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">mapes</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">best_params</span><span class="p">)</span>
 </pre></div>
 
@@ -18124,7 +18125,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.process.ProcessPoo
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Orbit">Orbit<a class="anchor-link" href="#Orbit">&#182;</a></h1><p>We will now compare our <em>Prophet</em> results with an alternative framework - Uber Orbit.</p>
-<h2 id="Preparations-and-Setup">Preparations and Setup<a class="anchor-link" href="#Preparations-and-Setup">&#182;</a></h2><p>Similarly to before, we will start by constructing train/test split datasets. This time, instead of a train and a full dataset, we will have to provide Orbit with training and testing data separately.</p>
+<h2 id="Preparations-and-Setup">Preparations and Setup<a class="anchor-link" href="#Preparations-and-Setup">&#182;</a></h2><p>Similarly to before, we start by constructing train/test split datasets. This time, instead of a train and a full dataset, we will have to provide Orbit with training and testing data separately.</p>
 
 </div>
 </div>
@@ -18137,7 +18138,7 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.process.ProcessPoo
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[108]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">full</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">full</span><span class="o">.</span><span class="n">index</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">full</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">full</span><span class="o">.</span><span class="n">index</span>
 <span class="n">train_df</span> <span class="o">=</span> <span class="n">full</span><span class="p">[:</span><span class="o">-</span><span class="n">FORECASTING_PERIOD</span><span class="p">]</span>
 <span class="n">test_df</span> <span class="o">=</span> <span class="n">full</span><span class="p">[</span><span class="o">-</span><span class="n">FORECASTING_PERIOD</span><span class="p">:]</span>
 </pre></div>
@@ -18154,8 +18155,8 @@ INFO:prophet:Applying in parallel with &lt;concurrent.futures.process.ProcessPoo
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Exponential-Smoothing">Exponential Smoothing<a class="anchor-link" href="#Exponential-Smoothing">&#182;</a></h2><p>Exponential Smoothing is a State Space Model, which family is generally expressed as:</p>
-$$ y_t = Z_t^T \alpha_t + \varepsilon_t $$$$ \alpha_{t+1} = T_t \alpha_t + R_t \eta_t $$<p>Where the first equation (prediction equation) is used to forecast, typically using linear regression, and the second (update equation) is responsible for the update to the state vector of the model, with some variance in state evolution itself.</p>
+<h2 id="Exponential-Smoothing">Exponential Smoothing<a class="anchor-link" href="#Exponential-Smoothing">&#182;</a></h2><p>Exponential Smoothing is a State Space Model; process is generally expressed as:</p>
+$$ y_t = Z_t^T \alpha_t + \varepsilon_t $$$$ \alpha_{t+1} = T_t \alpha_t + R_t \eta_t $$<p>Where the first equation (prediction equation) is used to forecast, typically using linear regression, and the second (update equation) is responsible for the update to the state vector of the model with some variance in state evolution itself.</p>
 <p>We will use Markov Chain Monte Carlo method to estimate this exponential smoothing model and fit our data.</p>
 
 </div>
@@ -18169,7 +18170,7 @@ $$ y_t = Z_t^T \alpha_t + \varepsilon_t $$$$ \alpha_{t+1} = T_t \alpha_t + R_t \
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[109]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">ets</span> <span class="o">=</span> <span class="n">ETS</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ets</span> <span class="o">=</span> <span class="n">ETS</span><span class="p">(</span>
     <span class="n">response_col</span><span class="o">=</span><span class="s1">'Close'</span><span class="p">,</span>
     <span class="n">date_col</span><span class="o">=</span><span class="s1">'Date'</span><span class="p">,</span>
     <span class="n">seasonality</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="c1">#yearly</span>
@@ -18312,7 +18313,7 @@ INFO:orbit:Sampling (PyStan) with chains: 4, cores: 2, temperature: 1.000, warmu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[110]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">predicted_df</span> <span class="o">=</span> <span class="n">ets</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">test_df</span><span class="p">)</span> <span class="c1"># Predict using Orbit</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predicted_df</span> <span class="o">=</span> <span class="n">ets</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">test_df</span><span class="p">)</span> <span class="c1"># Predict using Orbit</span>
 </pre></div>
 
      </div>
@@ -18340,7 +18341,7 @@ INFO:orbit:Sampling (PyStan) with chains: 4, cores: 2, temperature: 1.000, warmu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[113]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="c1"># Prepare date columns for merging:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare date columns for merging:</span>
 <span class="n">full</span><span class="p">[</span><span class="s1">'ds'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">full</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">predicted_df</span><span class="p">[</span><span class="s1">'ds'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">predicted_df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">],</span> <span class="n">utc</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="c1"># Merge the actual datasets:</span>
@@ -18683,7 +18684,7 @@ INFO:orbit:Sampling (PyStan) with chains: 4, cores: 2, temperature: 1.000, warmu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[114]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="c1"># Calculate out-of-sample MAPE</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate out-of-sample MAPE</span>
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="s1">'Close'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="s1">'prediction'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">mae_01</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
@@ -18741,7 +18742,7 @@ MAPE: 0.067
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[116]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df_merge</span><span class="p">[[</span><span class="s1">'prediction'</span><span class="p">,</span> <span class="s1">'Close'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_merge</span><span class="p">[[</span><span class="s1">'prediction'</span><span class="p">,</span> <span class="s1">'Close'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -18799,7 +18800,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Predicted result does not properly pick up the sudden jump in the underlying asset price, which is the main difference to the result produced by Prophet.</p>
+<p>Predicted result does not properly pick up the sudden jump in the underlying asset price, which is the main difference compared to the result produced by Prophet.</p>
 <h2 id="Local-Global-Trend-Model">Local Global Trend Model<a class="anchor-link" href="#Local-Global-Trend-Model">&#182;</a></h2><p>Similarly to exponential smoothing, we will now employ the LGT model from the Orbit package and evaluate it in the similar way.</p>
 
 </div>
@@ -18813,7 +18814,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[120]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">lgt</span> <span class="o">=</span> <span class="n">LGT</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lgt</span> <span class="o">=</span> <span class="n">LGT</span><span class="p">(</span>
     <span class="n">response_col</span><span class="o">=</span><span class="s1">'Close'</span><span class="p">,</span>
     <span class="n">date_col</span><span class="o">=</span><span class="s1">'Date'</span><span class="p">,</span>
     <span class="n">estimator</span><span class="o">=</span><span class="s1">'stan-mcmc'</span><span class="p">,</span> <span class="c1"># Markov Chain Monte Carlo</span>
@@ -18992,7 +18993,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[122]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">dlt</span> <span class="o">=</span> <span class="n">DLT</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dlt</span> <span class="o">=</span> <span class="n">DLT</span><span class="p">(</span>
     <span class="n">response_col</span><span class="o">=</span><span class="s1">'Close'</span><span class="p">,</span>
     <span class="n">date_col</span><span class="o">=</span><span class="s1">'Date'</span><span class="p">,</span>
     <span class="n">estimator</span><span class="o">=</span><span class="s1">'stan-map'</span><span class="p">,</span>
@@ -19104,11 +19105,54 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Summary-of-the-Project">Summary of the Project<a class="anchor-link" href="#Summary-of-the-Project">&#182;</a></h1><p>Concluding our project we summarize, that <em>Prophet</em> is a great tool for time series forecasting requiring minimal setup. Our MAPE score was lower than 5% for an out-of-sample forecast of 45 days on real-world business stock data. Uber Orbit performed very well too, but the MAPE score was lower at around 7% in all three models we have tested, including exponential smoothing, local global trend and damped local trend models. Our good results were backed by extensive cross validation. Notably, with a smaller prediction window one could reduce those errors even further.</p>
+<h1 id="Summary-of-the-Project">Summary of the Project<a class="anchor-link" href="#Summary-of-the-Project">&#182;</a></h1><p>Concluding our project we summarize, that <em>Prophet</em> is a great tool for time series forecasting requiring minimal setup. Our MAPE score was lower than 5% for an out-of-sample forecast of 45 days on real-world stock data. Uber Orbit performed very well too, but MAPE was higher at around 7% in all three models tested, including exponential smoothing, local global trend and damped local trend models. Our promising results were backed by extensive cross validation. Notably, with a smaller prediction window one could reduce those errors even further.</p>
 
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[133]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!apt install jq</span>
+<span class="c1">#!jq -M 'del(.metadata.widgets)' rep.ipynb &gt; rep.fixed.ipynb</span>
+<span class="c1">#!jupyter nbconvert --to html rep.fixed.ipynb --output-dir=/content/</span>
+<span class="c1">#!pwd</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[NbConvertApp] Converting notebook rep.fixed.ipynb to html
+[NbConvertApp] Writing 2147834 bytes to /content/rep.fixed.html
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 </body>
 
